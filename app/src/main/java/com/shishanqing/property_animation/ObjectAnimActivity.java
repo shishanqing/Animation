@@ -1,6 +1,7 @@
 package com.shishanqing.property_animation;
 
 import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
@@ -32,14 +33,14 @@ public class ObjectAnimActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_object_anim);
+        setContentView(R.layout.activity_object_anim);
         //setContentView(R.layout.anim_one);
-        setContentView(R.layout.anim_set);
+        //setContentView(R.layout.anim_set);
 
         WindowManager wm = this.getWindowManager();
 
         mBlueBall = (ImageView) findViewById(R.id.id_ball);
-        mScreenHeight = wm.getDefaultDisplay().getHeight();
+        //mScreenHeight = wm.getDefaultDisplay().getHeight();
     }
 
     //图片X轴旋转
@@ -241,7 +242,7 @@ public class ObjectAnimActivity extends Activity {
      * 在属性动画中，AnimatorSet正是通过playTogether(),playSequentially(),animSet.play().with(),
      * before(),after()这些方法控制多个动画的协同工作方式，从而做动对动画顺序的精确控制
      * */
-    public void togetherRun(View view) {
+    /*public void togetherRun(View view) {
         ObjectAnimator anim1 = ObjectAnimator.ofFloat(mBlueBall, "scaleX",
                 1.0f, 2f);
         ObjectAnimator anim2 = ObjectAnimator.ofFloat(mBlueBall, "scaleY",
@@ -252,9 +253,9 @@ public class ObjectAnimActivity extends Activity {
         //两个动画同时执行
         animSet.playTogether(anim1, anim2);
         animSet.start();
-    }
+    }*/
 
-    public void playWithAfter(View view) {
+    /*public void playWithAfter(View view) {
         float cx = mBlueBall.getX();
 
         ObjectAnimator anim1 = ObjectAnimator.ofFloat(mBlueBall, "scaleX",
@@ -265,16 +266,29 @@ public class ObjectAnimActivity extends Activity {
                 "x",  cx ,  0f);
         ObjectAnimator anim4 = ObjectAnimator.ofFloat(mBlueBall,
                 "x", cx);
-
+     */
         /**
          * anim1，anim2,anim3同时执行
          * anim4接着执行
          */
-        AnimatorSet animSet = new AnimatorSet();
+     /*   AnimatorSet animSet = new AnimatorSet();
         animSet.play(anim1).with(anim2);
         animSet.play(anim2).with(anim3);
         animSet.play(anim4).after(anim3);
         animSet.setDuration(1000);
         animSet.start();
-    }
+    }*/
+        /*使用AnimatorInflater加载动画的资源文件，然后设置目标
+         *在XML中使用属性动画，通过写xml声明动画，使用set嵌套set，结合orderring属性
+         * */
+      /*  public void AnimRun(View view) {
+            // 加载动画
+            Animator anim = AnimatorInflater.loadAnimator(this, R.animator.scalex);
+            //设定旋转轴的位置
+            mBlueBall.setPivotX(0);
+            mBlueBall.setPivotY(0);
+            mBlueBall.invalidate();//显示的调用invalidate
+            anim.setTarget(mBlueBall);
+            anim.start();
+        }*/
 }
