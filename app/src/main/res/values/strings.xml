@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Property_animation</string>
+    <string name="layout_animate">布局动画</string>
+    <string name="alpha_animate">透明度动画</string>
+    <string name="rotate_animate">旋转动画</string>
+    <string name="translate_animate">位移动画</string>
+    <string name="scale_animate">缩放动画</string>
+    <string name="property_animate">属性动画</string>
+    <string name="view_animate">视图动画</string>
 </resources>

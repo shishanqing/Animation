@@ -9,13 +9,16 @@ import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
+import android.widget.Button;
 import android.widget.ImageView;
 
 /**
@@ -28,20 +31,45 @@ public class ObjectAnimActivity extends Activity {
 
     ImageView mBlueBall;
     float mScreenHeight;
+    Button mLayoutButton;
+    private Button mViewButton;
+    private Button mPropertyButton;
     public static String TAG = "ObjectAnimActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_object_anim);
+        //setContentView(R.layout.activity_object_anim);
         //setContentView(R.layout.anim_one);
         //setContentView(R.layout.anim_set);
+        setContentView(R.layout.activity_main);
 
-        WindowManager wm = this.getWindowManager();
+        //WindowManager wm = this.getWindowManager();
 
-        mBlueBall = (ImageView) findViewById(R.id.id_ball);
+        //mBlueBall = (ImageView) findViewById(R.id.id_ball);
         //mScreenHeight = wm.getDefaultDisplay().getHeight();
+        mViewButton = (Button) findViewById(R.id.view_button);
+        mPropertyButton = (Button) findViewById(R.id.property_button);
+        mLayoutButton = (Button) findViewById(R.id.layoutButton);
+
+        mLayoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ObjectAnimActivity.this, LayoutAnimaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ObjectAnimActivity.this, ViewAnimaActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
+
 
     //图片X轴旋转
     /*public void AnimRun(View view) {
